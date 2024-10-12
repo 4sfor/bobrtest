@@ -1,20 +1,10 @@
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 const axios =require('axios');
-const express =require('express');
 
-const bot  = new TelegramBot(process.env.API_KEY_BOT);
-bot.setWebHook(`${process.env.WEBHOOK_URL}/bot${process.env.API_KEY_BOT}`);
-const app = express();
-app.use(express.json());
-app.post(`/bot${process.env.API_KEY_BOT}`, (req, res) => {
-    bot.processUpdate(req.body);
-    res.sendStatus(200);
-});
+const bot  = new TelegramBot(process.env.API_KEY_BOT, {polling: true});
 
-app.listen(process.env.APP_PORT, () =>{
-    console.log(`app listen ${process.env.APP_PORT}`)
-})
+
 
 bot.on('message', async (msg) => {
     const chaId = msg.chat.id;
