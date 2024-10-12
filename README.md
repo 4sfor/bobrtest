@@ -13,4 +13,4 @@
 
 ## Как это работает
 
-![Как это работает](images/example.png)
+![Как это работает](images/expample.png)
